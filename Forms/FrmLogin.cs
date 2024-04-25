@@ -33,5 +33,54 @@ namespace StresserWinGUI.Forms
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            PerformLogin(txtUsername.Text, txtPassword.Text);
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                PerformLogin(txtUsername.Text, txtPassword.Text);
+            }
+        }
+
+        /**
+         * Perform a login action
+         * 
+         * @param string username Username
+         * @param string password Password
+         * 
+         * @return void
+         */
+        private void PerformLogin(string username, string password)
+        {
+            FrmAlert x = new FrmAlert();
+            if (username != "")
+            {
+                if (password != "")
+                {
+
+                }
+                else
+                {
+                    x.showAlert("Please specify a password", FrmAlert.enmType.Warning);
+                }
+            }
+            else
+            {
+                x.showAlert("Please specify an username!", FrmAlert.enmType.Warning);
+            }
+        }
+
+        private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                PerformLogin(txtUsername.Text, txtPassword.Text);
+            }
+        }
     }
 }
