@@ -1,36 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Win32;
 
 namespace StresserWinGUI.Helpers
 {
     public static class AccountManager
     {
+        private static readonly string RegistryPath = @"SOFTWARE\MythicalSystems\Test";
 
         public static void Create(string accountName, string accountPassword)
         {
-
+            string newPassword = Encode(accountPassword);
+            SaveToRegistry(accountName, newPassword);
         }
 
-        public static void Verify(string accountName, string accountPassword)
+        public static bool Verify(string accountName, string accountPassword)
         {
+            string storedPassword = ReadFromRegistry(accountName);
+            if (storedPassword == null)
+            {
+                return false;
+            }
 
+            string encodedPassword = Encode(accountPassword);
+            return storedPassword.Equals(encodedPassword);
         }
 
+        private static void SaveToRegistry(string accountName, string encodedPassword)
+        {
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(RegistryPath))
+            {
+                if (key != null)
+                {
+                    key.SetValue(accountName, encodedPassword);
+                }
+            }
+        }
+
+        private static string ReadFromRegistry(string accountName)
+        {
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryPath))
+            {
+                if (key != null)
+                {
+                    return key.GetValue(accountName) as string;
+                }
+            }
+            return null;
+        }
 
         public static string Encode(string plainText)
         {
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
-            return System.Convert.ToBase64String(plainTextBytes);
+            return Convert.ToBase64String(plainTextBytes);
         }
 
         public static string Decode(string base64EncodedText)
         {
-            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedText);
+            var base64EncodedBytes = Convert.FromBase64String(base64EncodedText);
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
-
     }
 }
