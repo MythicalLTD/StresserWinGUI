@@ -5,7 +5,7 @@ namespace StresserWinGUI.Helpers
 {
     public static class AccountManager
     {
-        private static readonly string RegistryPath = @"SOFTWARE\MythicalSystems\Test";
+        private static readonly string RegistryPath = @"SOFTWARE\MythicalSystems\Stresser\Users";
 
         public static void Create(string accountName, string accountPassword)
         {
@@ -13,6 +13,18 @@ namespace StresserWinGUI.Helpers
             SaveToRegistry(accountName, newPassword);
         }
 
+        public static bool Exists(string accountName)
+        {
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryPath))
+            {
+                if (key != null)
+                {
+                    return key.GetValueNames().Contains(accountName);
+                }
+            }
+
+            return false; 
+        }
         public static bool Verify(string accountName, string accountPassword)
         {
             string storedPassword = ReadFromRegistry(accountName);

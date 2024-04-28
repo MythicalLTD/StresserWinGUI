@@ -62,7 +62,14 @@ namespace StresserWinGUI.Forms
             {
                 if (password != "")
                 {
-
+                    if (AccountManager.Verify(username, password) == true)
+                    {
+                        
+                    }
+                    else
+                    {
+                        x.showAlert("Login Failed!",FrmAlert.enmType.Error);
+                    }
                 }
                 else
                 {
