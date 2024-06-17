@@ -30,19 +30,18 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblappname = new Label();
             navbar = new Panel();
             lblclose = new Label();
             lblminimize = new Label();
             pbAppIcon = new PictureBox();
             DragControl = new Guna.UI2.WinForms.Guna2DragControl(components);
-            Elipse = new Guna.UI2.WinForms.Guna2Elipse(components);
             btnLogin = new Guna.UI2.WinForms.Guna2Button();
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
@@ -113,17 +112,12 @@
             DragControl.TargetControl = navbar;
             DragControl.UseTransparentDrag = true;
             // 
-            // Elipse
-            // 
-            Elipse.BorderRadius = 24;
-            Elipse.TargetControl = this;
-            // 
             // btnLogin
             // 
             btnLogin.BorderRadius = 12;
             btnLogin.BorderThickness = 2;
             btnLogin.CustomBorderColor = Color.Transparent;
-            btnLogin.CustomizableEdges = customizableEdges5;
+            btnLogin.CustomizableEdges = customizableEdges1;
             btnLogin.DisabledState.BorderColor = Color.DarkGray;
             btnLogin.DisabledState.CustomBorderColor = Color.DarkGray;
             btnLogin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -134,7 +128,7 @@
             btnLogin.Location = new Point(52, 162);
             btnLogin.Name = "btnLogin";
             btnLogin.PressedColor = Color.Transparent;
-            btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnLogin.Size = new Size(160, 37);
             btnLogin.TabIndex = 3;
             btnLogin.Text = "Sign In";
@@ -180,7 +174,7 @@
             txtPassword.BorderColor = Color.FromArgb(16, 16, 16);
             txtPassword.BorderRadius = 6;
             txtPassword.BorderThickness = 2;
-            txtPassword.CustomizableEdges = customizableEdges1;
+            txtPassword.CustomizableEdges = customizableEdges5;
             txtPassword.DefaultText = "";
             txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -203,7 +197,7 @@
             txtPassword.PasswordChar = '●';
             txtPassword.PlaceholderText = "●●●●●●●●●●";
             txtPassword.SelectedText = "";
-            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges6;
             txtPassword.Size = new Size(229, 36);
             txtPassword.TabIndex = 2;
             txtPassword.UseSystemPasswordChar = true;
@@ -265,7 +259,6 @@
         private Label lblminimize;
         private PictureBox pbAppIcon;
         private Guna.UI2.WinForms.Guna2DragControl DragControl;
-        private Guna.UI2.WinForms.Guna2Elipse Elipse;
         private Guna.UI2.WinForms.Guna2Button btnLogin;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;

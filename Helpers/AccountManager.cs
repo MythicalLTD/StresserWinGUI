@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using Microsoft.Win32;
 
 namespace StresserWinGUI.Helpers
@@ -23,10 +25,18 @@ namespace StresserWinGUI.Helpers
                 }
             }
 
-            return false; 
+            return false;
         }
+
         public static bool Verify(string accountName, string accountPassword)
         {
+            if (!AnyAccountsExist())
+            {
+                Create(accountName, accountPassword);
+                RestartApplication();
+                return true;
+            }
+
             string storedPassword = ReadFromRegistry(accountName);
             if (storedPassword == null)
             {
@@ -70,6 +80,24 @@ namespace StresserWinGUI.Helpers
         {
             var base64EncodedBytes = Convert.FromBase64String(base64EncodedText);
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+
+        private static bool AnyAccountsExist()
+        {
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryPath))
+            {
+                if (key != null)
+                {
+                    return key.GetValueNames().Any();
+                }
+            }
+            return false;
+        }
+
+        private static void RestartApplication()
+        {
+            MessageBox.Show("We created a new user inside the database\nWe will restart the app so you can use this user to login!","Account",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+            Application.Restart();
         }
     }
 }

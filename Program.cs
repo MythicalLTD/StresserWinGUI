@@ -27,6 +27,7 @@ namespace StresserWinGUI
             //Set the working dir to the right dir!
             Directory.SetCurrentDirectory(appWorkDir);
             Environment.CurrentDirectory = appWorkDir;
+            hLogger.Log(LogType.Warning, "DEBUG Mode Started");
             //Starts the APP
             Application.Run(new FrmLogin());
         }

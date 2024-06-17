@@ -13,6 +13,8 @@ namespace StresserWinGUI.Forms
 {
     public partial class FrmLogin : Form
     {
+        public static string username;
+        public static int debug_value = 49112149;
         public FrmLogin()
         {
             InitializeComponent();
@@ -64,7 +66,11 @@ namespace StresserWinGUI.Forms
                 {
                     if (AccountManager.Verify(username, password) == true)
                     {
-                        
+                        x.showAlert($"Logged in as {username}", FrmAlert.enmType.Succes);
+                        FrmLogin.username = username;
+                        FrmMain xmain = new FrmMain();
+                        xmain.Show();
+                        this.Hide();
                     }
                     else
                     {
